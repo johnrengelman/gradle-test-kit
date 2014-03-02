@@ -14,6 +14,11 @@ Usage
 Add the following to your `build.gradle` file:
 
 ```groovy
+repositories {
+  maven {
+    url 'http://dl.bintray.com/johnrengelman/gradle-plugins'
+  }
+}
 dependencies {
   testCompile 'org.gradle.api.plugins:gradle-test-kit:0.1'
 }
