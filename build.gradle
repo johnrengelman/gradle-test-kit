@@ -1,10 +1,11 @@
 apply plugin: 'groovy'
 apply from: 'gradle/idea.gradle'
-apply from: 'gradle/docs.gradle'
-apply from: 'gradle/publish.gradle'
 
 group = 'org.gradle.api.plugins'
 version = '0.1'
+
+apply from: 'gradle/docs.gradle'
+apply from: 'gradle/publish.gradle'
 
 ext.isSnapshot = version.endsWith("SNAPSHOT")
 
