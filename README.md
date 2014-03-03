@@ -20,6 +20,6 @@ repositories {
   }
 }
 dependencies {
-  testCompile 'org.gradle.api.plugins:gradle-test-kit:0.1'
+  testCompile 'com.github.jengelman.gradle.plugins:gradle-test-kit:0.1'
 }
 ```

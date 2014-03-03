@@ -1,7 +1,7 @@
 apply plugin: 'groovy'
 apply from: 'gradle/idea.gradle'
 
-group = 'org.gradle.api.plugins'
+group = 'com.github.jengelman.gradle.plugins'
 version = '0.1'
 
 apply from: 'gradle/docs.gradle'
