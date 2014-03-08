@@ -21,6 +21,7 @@ package org.gradle.testkit.functional
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.testkit.functional.foo.Thing
+import org.gradle.tooling.GradleConnector
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import spock.lang.Specification
@@ -42,6 +43,24 @@ class TestSpec extends Specification {
 
         then:
         ExecutionResult result = runner.run()
+        result.standardOutput.contains("I ran!")
+    }
+
+    def "configure connector for Gradle version"() {
+        given:
+        runner = GradleRunnerFactory.create { GradleConnector connector ->
+            connector.useGradleVersion('1.9')
+            forProjectDirectory(tmp.root)
+        }
+        tmp.newFile("build.gradle") << """
+            apply plugin: ${SomePlugin.name}
+        """
+
+        when:
+        runner.arguments << "echo"
+        ExecutionResult result = runner.run()
+
+        then:
         result.standardOutput.contains("I ran!")
     }
 }
