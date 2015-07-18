@@ -14,6 +14,8 @@ public class ToolingApiGradleHandleFactory implements GradleHandleFactory {
 
     private final Closure connectorConfigureAction;
 
+    private ProjectConnection connection;
+
     public ToolingApiGradleHandleFactory() {
         this(null);
     }
@@ -26,12 +28,19 @@ public class ToolingApiGradleHandleFactory implements GradleHandleFactory {
         GradleConnector connector = GradleConnector.newConnector();
         connector.forProjectDirectory(directory);
         configureConnector(connector);
-        ProjectConnection connection = connector.connect();
+        connection = connector.connect();
         BuildLauncher launcher = connection.newBuild();
         String[] argumentArray = new String[arguments.size()];
         arguments.toArray(argumentArray);
         launcher.withArguments(argumentArray);
         return new BuildLauncherBackedGradleHandle(launcher);
+    }
+
+    @Override
+    public void close() {
+        if (connection != null) {
+            connection.close();
+        }
     }
 
     private void configureConnector(GradleConnector connector) {

@@ -54,6 +54,10 @@ public class DefaultGradleRunner implements GradleRunner {
         return start().waitForFinish();
     }
 
+    public void close() {
+        handleFactory.close();
+    }
+
     private GradleHandle start() {
         return handleFactory.start(directory, arguments);
     }

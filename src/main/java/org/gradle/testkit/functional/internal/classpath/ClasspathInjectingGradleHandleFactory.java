@@ -40,6 +40,11 @@ public class ClasspathInjectingGradleHandleFactory implements GradleHandleFactor
         return delegateFactory.start(directory, ammendedArguments);
     }
 
+    @Override
+    public void close() {
+        delegateFactory.close();
+    }
+
     private List<File> getClasspathAsFiles() {
         List<URL> classpathUrls = ClasspathUtil.getClasspath(classLoader);
         return CollectionUtils.collect(classpathUrls, new ArrayList<File>(classpathUrls.size()), new Transformer<File, URL>() {

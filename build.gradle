@@ -2,7 +2,7 @@ apply plugin: 'groovy'
 apply from: 'gradle/idea.gradle'
 
 group = 'com.github.jengelman.gradle.plugins'
-version = '0.2'
+version = '0.3'
 
 apply from: 'gradle/docs.gradle'
 apply from: 'gradle/publish.gradle'
